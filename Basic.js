@@ -1,6 +1,7 @@
 class Basic {
   constructor(score) {
     this.score = score;
+    this.textScores = ['Love', 'Fifteen', 'Thirty', 'Forty'];
   }
 
   static matches(score) {
@@ -8,30 +9,11 @@ class Basic {
   }
 
   scoreText() {
-    var tempScore = 0;
-    var score = "";
-    for (var i = 1; i < 3; i++) {
-      if (i === 1) tempScore = this.score.player1;
-      else {
-        score += "-";
-        tempScore = this.score.player2;
-      }
-      switch (tempScore) {
-        case 0:
-        score += "Love";
-        break;
-        case 1:
-        score += "Fifteen";
-        break;
-        case 2:
-        score += "Thirty";
-        break;
-        case 3:
-        score += "Forty";
-        break;
-      }
-    }
-    return score;
+    return `${this._numericToText(this.score.player1)}-${this._numericToText(this.score.player2)}`;
+  }
+
+  _numericToText(number) {
+    return this.textScores[number];
   }
 }
 

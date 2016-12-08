@@ -1,23 +1,14 @@
-class Tie {
-  constructor(score) {
-    this.score = score;
-  }
+import Basic from './Basic';
 
-  static matches(_score) {
-    return _score.isTie();
+class Tie extends Basic {
+  static matches(score) {
+    return score.isTie();
   }
 
   scoreText() {
-    switch (this.score.player1) {
-      case 0:
-      return "Love-All";
-      case 1:
-      return "Fifteen-All";
-      case 2:
-      return "Thirty-All";
-      default:
-      return "Deuce";
-    }
+    if (this.score.isDeuce()) return "Deuce";
+    const textualScores = this._numericToText(this.score.player1);
+    return `${textualScores}-All`;
   }
 }
 

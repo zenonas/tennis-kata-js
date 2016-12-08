@@ -9,19 +9,23 @@ class Score {
   }
 
   isAdvantage() {
-    return this._bothPlayersHaveMoreThanFourPoints() && this._smallScoreDifferenceBetweenPlayers();
+    return this._anyPlayerHasMorePointsThan(4) && this._smallScoreDifferenceBetweenPlayers();
   }
 
   isWin() {
-    return this._bothPlayersHaveMoreThanFourPoints() && !this._smallScoreDifferenceBetweenPlayers();
+    return this._anyPlayerHasMorePointsThan(4) && !this._smallScoreDifferenceBetweenPlayers();
   }
 
   isBasic() {
     return true;
   }
 
-  _bothPlayersHaveMoreThanFourPoints() {
-    return this.player1 >= 4 || this.player2 >= 4;
+  isDeuce() {
+    return this.isTie() && this._anyPlayerHasMorePointsThan(3);
+  }
+
+  _anyPlayerHasMorePointsThan(points) {
+    return this.player1 >= points || this.player2 >= points;
   }
 
   _smallScoreDifferenceBetweenPlayers() {
