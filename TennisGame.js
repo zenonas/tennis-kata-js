@@ -1,21 +1,22 @@
+import Score from './Score';
+
 class TennisGame {
 
   constructor() {
-    this.player1Score = 0;
-    this.player2Score = 0;
+    this.score = new Score();
   }
 
   wonPoint(playerName) {
     if (playerName === "player1")
-    this.player1Score += 1;
+    this.score.player1 += 1;
     else
-    this.player2Score += 1;
+    this.score.player2 += 1;
   }
 
   getScore() {
-    if (this.player1Score === this.player2Score) {
+    if (this.score.player1 === this.score.player2) {
       return this.getScoreWhenTie();
-    } else if (this.player1Score >= 4 || this.player2Score >= 4) {
+    } else if (this.score.player1 >= 4 || this.score.player2 >= 4) {
       return this.getScoreCloseToTheEnd();
     } else {
       return this.getScoreForGame();
@@ -23,7 +24,7 @@ class TennisGame {
   }
 
   getScoreWhenTie() {
-    switch (this.player1Score) {
+    switch (this.score.player1) {
       case 0:
       return "Love-All";
       case 1:
@@ -36,21 +37,21 @@ class TennisGame {
   }
 
   getScoreCloseToTheEnd() {
-    var minusResult = this.player1Score - this.player2Score;
+    var minusResult = this.score.player1 - this.score.player2;
     if (minusResult === 1) return "Advantage player1";
     else if (minusResult === -1) return "Advantage player2";
     else if (minusResult >= 2) return "Win for player1";
     else return "Win for player2";
   }
-    
+
   getScoreForGame() {
     var tempScore = 0;
     var score = "";
     for (var i = 1; i < 3; i++) {
-      if (i === 1) tempScore = this.player1Score;
+      if (i === 1) tempScore = this.score.player1;
       else {
         score += "-";
-        tempScore = this.player2Score;
+        tempScore = this.score.player2;
       }
       switch (tempScore) {
         case 0:
