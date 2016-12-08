@@ -3,6 +3,10 @@ class Advantage {
     this.score = score;
   }
 
+  static matches(score) {
+    return score.isAdvantage();
+  }
+
   scoreText() {
     var minusResult = this.score.player1 - this.score.player2;
     if (minusResult === 1) {

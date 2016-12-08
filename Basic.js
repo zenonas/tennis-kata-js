@@ -3,6 +3,10 @@ class Basic {
     this.score = score;
   }
 
+  static matches(score) {
+    return score.isBasic();
+  }
+
   scoreText() {
     var tempScore = 0;
     var score = "";

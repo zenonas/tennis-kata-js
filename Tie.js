@@ -3,6 +3,10 @@ class Tie {
     this.score = score;
   }
 
+  static matches(_score) {
+    return _score.isTie();
+  }
+
   scoreText() {
     switch (this.score.player1) {
       case 0:
