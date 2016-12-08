@@ -4,6 +4,14 @@ class Score {
     this.player2 = 0;
   }
 
+  addPointToPlayer1() {
+    this.player1 += 1;
+  }
+
+  addPointToPlayer2() {
+    this.player2 += 1;
+  }
+
   isTie() {
     return this.player1 === this.player2;
   }

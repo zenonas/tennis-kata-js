@@ -8,10 +8,11 @@ class TennisGame {
   }
 
   wonPoint(playerName) {
-    if (playerName === "player1")
-    this.score.player1 += 1;
-    else
-    this.score.player2 += 1;
+    if (playerName === "player1") {
+      this.score.addPointToPlayer1();
+    } else {
+      this.score.addPointToPlayer2();
+    }
   }
 
   getScore() {
