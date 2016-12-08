@@ -1,4 +1,8 @@
 import Score from './Score';
+import Tie from './Tie';
+import Win from './Win';
+import Basic from './Basic';
+import Advantage from './Advantage';
 
 class TennisGame {
 
@@ -24,51 +28,24 @@ class TennisGame {
   }
 
   getScoreWhenTie() {
-    switch (this.score.player1) {
-      case 0:
-      return "Love-All";
-      case 1:
-      return "Fifteen-All";
-      case 2:
-      return "Thirty-All";
-      default:
-      return "Deuce";
-    }
+    var tie = new Tie(this.score);
+    return tie.scoreText();
   }
 
   getScoreCloseToTheEnd() {
     var minusResult = this.score.player1 - this.score.player2;
-    if (minusResult === 1) return "Advantage player1";
-    else if (minusResult === -1) return "Advantage player2";
-    else if (minusResult >= 2) return "Win for player1";
-    else return "Win for player2";
+    if (minusResult === 1 || minusResult === -1) {
+      var advantage = new Advantage(this.score);
+      return advantage.scoreText();
+    } else {
+      var win = new Win(this.score);
+      return win.scoreText();
+    }
   }
 
   getScoreForGame() {
-    var tempScore = 0;
-    var score = "";
-    for (var i = 1; i < 3; i++) {
-      if (i === 1) tempScore = this.score.player1;
-      else {
-        score += "-";
-        tempScore = this.score.player2;
-      }
-      switch (tempScore) {
-        case 0:
-        score += "Love";
-        break;
-        case 1:
-        score += "Fifteen";
-        break;
-        case 2:
-        score += "Thirty";
-        break;
-        case 3:
-        score += "Forty";
-        break;
-      }
-    }
-    return score;
+    var basic = new Basic(this.score);
+    return basic.scoreText();
   }
 }
 
